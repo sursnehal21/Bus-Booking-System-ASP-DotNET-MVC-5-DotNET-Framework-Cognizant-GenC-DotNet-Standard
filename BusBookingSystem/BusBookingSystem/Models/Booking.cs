@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BusBookingSystem.Models
 {
-    [Table("Booking")]
+    [Table("Bookings")] //using this annotation we can override the name of the table in BbsDbcontext *not recommended*
     public class Booking
     {
         [Key]
