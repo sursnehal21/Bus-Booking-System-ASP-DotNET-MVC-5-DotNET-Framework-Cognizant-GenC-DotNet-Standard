@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+<style>
+    body{
+        background-image: url("../../Content/Images/img.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+    }
+    .container-index2{
+        padding:90px;
+    }
+</style>
+
+<div class="container container-index2">
+    <h1 class="display-5">Ride Easy, Book Smarter</h1>
+    <p>Your Journey Begins Here</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Get Started", "AdminHome", "Home", null, new { @class = "btn btn-success" })
+        }
+        if (User.IsInRole("Passenger"))
+        {
+            @Html.ActionLink("Get Started", "UserHome", "Home", null, new { @class = "btn btn-success" })
+        }
+    }
+</div>

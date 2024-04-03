@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<style>
+    body {
+        background-color: #f7ded0;
+    }
+    .card:hover{
+        background-color:#04265e;
+        color:white;
+    }
+</style>
+
+<div>
+    <h2 class="pt-3 pb-3">Manage</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <a href="@Url.Action("Index","BusInfo")" style="text-decoration:none; color: inherit;">
+                <div class="card" style="width: 15rem;">
+                    <img src="~/Content/Images/busInfo-img.jpg" class="card-img-top" alt="Bus" height=123>
+                    <div class="card-body text-center">
+                        Bus Details
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("Index","BusStop")" style="text-decoration:none; color: inherit;">
+                <div class="card" style="width: 15rem;">
+                    <img src="~/Content/Images/bustop-img.jpg" class="card-img-top" alt="Bus Stop" height=123>
+                    <div class="card-body text-center">
+                        Bus Stops
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("Index","Route")" style="text-decoration:none; color: inherit;">
+                <div class="card" style="width: 15rem;">
+                    <img src="~/Content/Images/busroute-img.png" class="card-img-top" alt="Route">
+                    <div class="card-body text-center">
+                        Route
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("Index","Schedule")" style="text-decoration:none; color: inherit;">
+                <div class="card" style="width: 15rem;">
+                    <img src="~/Content/Images/busschedule-img.jpg" class="card-img-top" alt="Schedule" height=123>
+                    <div class="card-body text-center">
+                        Schedule
+                    </div>
+                </div>.
+            </a>
+        </div>
+    </div>
+
+    @*<h2 class="pt-5 pb-2">View</h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card" style="width: 15rem;">
+                <img src="~/Content/Images/booking-image.jpg" class="card-img-top" alt="Booking">
+                <div class="card-body text-center">
+                    Booking
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+</div>
+

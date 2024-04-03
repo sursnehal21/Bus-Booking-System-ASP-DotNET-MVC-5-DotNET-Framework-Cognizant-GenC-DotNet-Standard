@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Bookings";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@model IEnumerable<BusBookingSystem.Models.Booking>
+
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Source)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Destination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookingDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfPassengers)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelitem => item.Source)</td>
+                    <td>@Html.DisplayFor(modelitem => item.Destination)</td>
+                    <td>@Html.DisplayFor(modelitem => item.BookingDate)</td>
+                    <td>@Html.DisplayFor(modelitem => item.NumberOfPassengers)</td>
+
+                    <td>
+                        <span>
+                            @Html.ActionLink("View", "Confirmation", "Booking", new { id = item.BookingId }, new { @class = "btn btn-success" })
+                        </span>
+                        <span>
+                            @Html.ActionLink("Cancel", "Cancel", "Booking", new { id = item.BookingId }, new { @class = "btn btn-danger" })
+                        </span>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+

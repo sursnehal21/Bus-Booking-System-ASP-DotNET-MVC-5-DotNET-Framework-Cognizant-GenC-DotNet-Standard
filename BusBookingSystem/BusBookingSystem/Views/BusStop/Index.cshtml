@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<BusBookingSystem.Models.BusStop>
+
+<main>
+    <h2 class="h4 mb-3">Bus Stops</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-success"><i class="fa fa-plus"></i></a>
+    </p>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Bus Stop</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BusStopName</td>
+                    <td>@item.City</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new {id=item.BusStopId})" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+
+                        <a href="@Url.Action("Delete", new {id=item.BusStopId})" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>
+

@@ -1,0 +1,141 @@
+﻿@model BusBookingSystem.Models.Payment
+
+@{
+    ViewBag.Title = "PayNow";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<style>
+
+    .row {
+        padding-top: 50px;
+    }
+
+    .card {
+        padding: 30px;
+    }
+
+    .amount {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .bookingid {
+        font-weight: 600;
+    }
+
+    .payment {
+        background-color: #F0F3FF;
+    }
+
+    .details {
+        background-color: #DCF2F1;
+    }
+</style>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card payment">
+            <h2 class="card-title">Payment Details</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.BookingId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BookingId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.PaymentDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Model.PaymentDate
+                            @Html.ValidationMessageFor(model => model.PaymentDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pb-2 pt-3">
+                        @Html.LabelFor(model => model.CardType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.CardType, new List<SelectListItem>() { new SelectListItem() { Text = "Debit Card", Value = "DebitCard" }, new SelectListItem() { Text = "Credit Card", Value = "CreditCard" } }, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CardType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pb-2">
+                        @Html.LabelFor(model => model.CardNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CardNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CardNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pb-2">
+                        @Html.LabelFor(model => model.CVV, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CVV, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CVV, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.HiddenFor(model => model.ScheduleId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ScheduleId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-3">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Pay Now" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <div class="card details">
+            @Html.LabelFor(model => model.BookingId, htmlAttributes: new { @class = "control-label col-md-6" })
+            <p class="bookingid">@Model.BookingId</p>
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-6" })
+            <p class="amount">&#8377 @Model.Amount</p>
+        </div>
+
+    </div>
+</div>

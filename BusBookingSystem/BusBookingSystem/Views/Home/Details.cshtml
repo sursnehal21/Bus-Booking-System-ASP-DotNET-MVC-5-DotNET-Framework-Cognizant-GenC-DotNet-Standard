@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@model BusBookingSystem.Models.User
+
+<h2 class="pt-3 pb-3">My Profile</h2>
+
+<div>
+    <div class="pb-3">
+        <h6>Full Name:</h6>
+        <span>@Model.FirstName</span>
+         <span>@Model.LastName</span>
+    </div>
+   <div>
+       <h6>User Name:</h6>
+       <p>@Model.UserName</p>
+   </div>
+    <div>
+        <h6>Email:</h6>
+        <p>@Model.Email</p>
+    </div>
+</div>
+

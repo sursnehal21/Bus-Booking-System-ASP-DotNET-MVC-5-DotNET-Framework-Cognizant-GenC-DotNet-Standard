@@ -1,0 +1,131 @@
+﻿@model BusBookingSystem.Models.Booking
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<style>
+
+    body {
+        background-color: #F0F3FF;
+    }
+
+    .jumbotron {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    .route {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .book-details {
+        border: 1px solid black;
+        padding: 20px;
+        width: 70%;
+        background-color: white;
+    }
+
+    .book-form {
+        border: 1px solid lightgrey;
+        padding: 20px;
+        background-color: #F0F3FF;
+    }
+
+    .form-group {
+        padding-bottom: 5px;
+    }
+
+    .path {
+        font-size: 2rem;
+    }
+
+    .date {
+        opacity: 0.8;
+    }
+
+    .btn {
+        width: 100px;
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="book-details rounded">
+        <h2 class="pb-3">Review Bus Details</h2>
+        <div class="book-form rounded">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Booking</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.UserId, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.RouteId, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.ScheduleId, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                    </div>
+
+                    <div class="route">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Source, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <p class="path">@Model.Source</p>
+                                @Html.HiddenFor(model => model.Source, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                            </div>
+                        </div>
+
+                        <i class="fa fa-long-arrow-right pt-3"></i>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Destination, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <p class="path">@Model.Destination</p>
+                                @Html.HiddenFor(model => model.Destination, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NumberOfPassengers, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NumberOfPassengers, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.NumberOfPassengers, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pt-1">
+                        @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <p class="Date">@Model.BookingDate</p>
+                            @Html.HiddenFor(model => model.BookingDate, new { htmlAttributes = new { @class = "control-label col-md-2" } })
+                            @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Book" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>

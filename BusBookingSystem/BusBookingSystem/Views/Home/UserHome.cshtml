@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "UserHome";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@model BusBookingSystem.Models.Booking
+
+
+@{
+    BusBookingSystem.Models.BbsDbContext db = new BusBookingSystem.Models.BbsDbContext();
+
+    int userId = (int)Session["userid"];
+    BusBookingSystem.Models.User user = db.Users.Find(userId);
+    string firstName = user.FirstName;
+}
+
+<style>
+    body {
+        background: linear-gradient(to bottom, #938BA1 77%, #f0f3ff 50% );
+        background-repeat: no-repeat;
+        background-color: #f0f3ff;
+    }
+
+    .search-form {
+        background-color: #EEEEEE;
+        padding: 50px; /* Add some padding for better spacing */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    }
+
+    form {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; /* Allow form elements to wrap to the next line */
+        width: 100%;
+    }
+
+        form .form-control {
+            flex: 1;
+            margin: 10px;
+        }
+
+    .btn-primary {
+        width: 100%; /* Make the button span the entire width */
+    }
+
+    .boxes {
+        padding: 13px 20px;
+        width: 180px;
+        margin: 0px 10px;
+        outline: none;
+    }
+
+    label {
+        padding-left: 10px;
+        padding-bottom: 3px;
+    }
+
+    .select-btn {
+        display: inline-block;
+        padding: 14px 30px;
+        background-color: rgb(209, 95, 2);
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0px 10px;
+        transition: 0.3s ease-in;
+        border: 0px;
+    }
+
+    h2 {
+        color: white;
+    }
+</style>
+
+<div class="search-page">
+    <h2 class="text-center">Welcome, @firstName</h2>
+    <h4 class="text-center">Find and book best Buses</h4>
+    <br /><br />
+    <div class="search-form">
+
+        <form action="@Url.Action("SearchSchedule", "Schedule")" method="post">
+            <div class="form-group pt-0.5">
+                <label for="source">Source:</label>
+                <br />
+                <select name="source" class="boxes" placeholder="Select Stop">
+                    <option value="" disabled selected>Select City-Stop</option>
+                    @foreach(var stop in ViewBag.SourceBusStop)
+                    {
+                        <option value="@stop.BusStopId">@stop.City-@stop.BusStopName</option>
+                    }
+                </select>
+               
+            </div>
+            <div class="form-group pt-0.5">
+                <label for="destination">Destination:</label>
+                <br />
+                <select name="destination" class="boxes" placeholder="Select Stop">
+                    <option value="" disabled selected>Select City-Stop</option>
+                    @foreach (var stop in ViewBag.DestinationBusStop)
+                    {
+                        <option value="@stop.BusStopId">@stop.City-@stop.BusStopName</option>
+                    }
+                </select>               
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <br />
+                <input type="date" id="date" name="date" class="boxes" required>
+            </div>
+            <div class="form-group pt-4">
+                <button class="text-center btn btn-primary select-btn"> Search Buses</button>
+            </div>
+        </form>
+    </div>
+</div>

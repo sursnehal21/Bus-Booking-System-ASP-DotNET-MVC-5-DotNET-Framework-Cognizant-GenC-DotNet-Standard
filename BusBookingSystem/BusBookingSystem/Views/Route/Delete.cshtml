@@ -1,0 +1,71 @@
+﻿@model BusBookingSystem.Models.Route
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 class="text-center">Delete</h2>
+<h3 class="text-center">Are you sure you want to delete this?</h3>
+<hr />
+<style>
+    .jumbotron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .login-box {
+        width: 40%;
+    }
+
+    .form-actions {
+        padding-left: 80px;
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="login-box shadow rounded p-5">
+        <div>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.BusInfo.BusName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BusInfo.BusName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SourceBusStop)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SourceBusStop)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DestinationBusStop)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DestinationBusStop)
+                </dd>
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+        </div>
+    </div>

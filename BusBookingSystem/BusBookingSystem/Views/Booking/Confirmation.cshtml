@@ -1,0 +1,131 @@
+﻿@model BusBookingSystem.Models.Booking
+
+@{
+    ViewBag.Title = "Confirmation";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+<style>
+    .bus-details, .price {
+        display: flex;
+        justify-content: space-between
+    }
+
+    h2 {
+        color: #365486;
+    }
+
+    .btn {
+        width: 100px
+    }
+
+</style>
+
+<script>
+    function printSelectedArea() {
+        var printContent = document.getElementById("printableArea").innerHTML;
+       
+        var styleElement = document.createElement("style");
+
+        var styleTags = document.querySelectorAll("body style");
+
+        for (var i = 0; i < styleTags.length; i++) {
+            styleElement.appendChild(document.createTextNode(styleTags[i].innerHTML));
+        }
+
+        document.head.appendChild(styleElement);
+
+        var originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+
+        window.print();
+
+        document.body.innerHTML = originalContent;
+
+        document.head.removeChild(styleElement);
+    }
+</script>
+
+
+<div id="printableArea">
+
+<h2 class="text-center pb-2 pt-2">Booking Details</h2>
+
+<div>
+    <h6>Booking ID:</h6>
+    <p>@ViewBag.BookingId</p>
+
+    <h6>Booking Date:</h6>
+    <p>@ViewBag.BookingDate</p>
+
+
+    <h6>User Name:</h6>
+    <p>
+        <span>@ViewBag.FirstName</span>
+        <span>@ViewBag.LastName</span>
+    </p>
+
+
+    <h6>Trip Date:</h6>
+    <p>@ViewBag.BusDate</p>
+
+    <h6>Route ID:</h6>
+    <p>@ViewBag.RouteId</p>
+
+
+    <hr />
+
+    <h3 class="pb-4">Bus Details:</h3>
+    <div class="bus-details">
+
+        <div>
+            <h6>Boarding Point:</h6>
+            <p>@ViewBag.Source</p>
+        </div>
+
+        <div>
+            <h6>Dropping Point:</h6>
+            <p>@ViewBag.Destination</p>
+        </div>
+
+        <div>
+            <h6>Departure Time:</h6>
+            <p>@ViewBag.DepartureTime</p>
+        </div>
+        <div>
+
+            <h6>Arrival Time:</h6>
+            <p>@ViewBag.ArrivalTime</p>
+        </div>
+
+        <div>
+            <h6>Bus Name:</h6>
+            <p>@ViewBag.BusName</p>
+        </div>
+
+    </div>
+
+    <hr />
+
+    <div class="price">
+        <div>
+            <h6>Number of Passengers:</h6>
+            <p>@ViewBag.NumberOfPassengers</p>
+        </div>
+        <div>
+            <h6>Total Price:</h6>
+            <p>@ViewBag.TotalPrice</p>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
+    <div class="d-flex justify-content-center pt-3 pb-5">
+        <button type="button" onclick="printSelectedArea()" class="btn btn-outline-warning">
+            PRINT
+        </button>
+    </div>
+

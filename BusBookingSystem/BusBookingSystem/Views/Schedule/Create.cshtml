@@ -1,0 +1,97 @@
+﻿@model BusBookingSystem.Models.Schedule
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 class="text-center">Create</h2>
+<hr />
+<style>
+    .jumbotron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .login-box {
+        width: 40%;
+    }
+
+    .form-horizontal {
+        padding-left: 40px;
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="login-box shadow rounded p-5">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.SourceBusStop)
+            @Html.HiddenFor(model => model.DestinationBusStop)
+            @Html.HiddenFor(model => model.SourceBusStopId)
+            @Html.HiddenFor(model => model.DestinationBusStopId)
+            @Html.HiddenFor(model => model.BusId
+
+        )
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.RouteId, "Route Id", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RouteId, null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RouteId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.BusDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BusDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BusDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-groupv pb-3">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pb-3">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+        }
+
+        <div class="text-center">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        </div>
+    </div>

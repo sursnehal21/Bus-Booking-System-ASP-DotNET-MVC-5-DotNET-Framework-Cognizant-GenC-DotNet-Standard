@@ -1,0 +1,58 @@
+﻿@model List<BusBookingSystem.Models.Schedule>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@{
+    BusBookingSystem.Models.BbsDbContext db = new BusBookingSystem.Models.BbsDbContext();
+}
+
+<main>
+    <h2 class="h4 mb-3">Bus Trip Schedules</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-success"><i class="fa fa-plus"></i></a>
+    </p>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Bus</th>
+                <th>Boarding</th>
+                <th>Dropping</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Trip Date</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            BusBookingSystem.Models.BusInfo al = db.BusInfos.Find(item.BusId);
+                        }
+                        @al.BusName
+                    </td>
+                    <td>@item.SourceBusStop</td>
+                    <td>@item.DestinationBusStop</td>
+                    <td>@item.DepartureTime</td>
+                    <td>@item.ArrivalTime</td>
+                    <td>@item.BusDate.ToShortDateString()</td>
+
+                    <td>@item.Price</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new {id=item.ScheduleId})" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+
+                        <a href="@Url.Action("Delete", new {id=item.ScheduleId})" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>
+

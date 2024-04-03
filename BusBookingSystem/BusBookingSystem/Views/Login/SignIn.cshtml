@@ -1,0 +1,87 @@
+﻿@model BusBookingSystem.Models.User
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/Loginlayout.cshtml";
+}
+
+<style>
+    body{
+        background-color:#f0f3ff;
+    }
+    .jumbotron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .login-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .login-box {
+        width: 40%;
+        background-color:white;
+    }
+
+    .form-horizontal {
+        padding-left: 40px;
+    }
+
+    .login-button {
+        display: block;
+        width: 100%;
+        background-color: #04265E;
+        border: none;
+    }
+
+        .login-button:hover {
+            background-color: #070F2B;
+        }
+</style>
+<div class="jumbotron">
+    <div class="login-box shadow rounded p-5">
+        <h1 class="login-title text-center">Login</h1>
+
+        @using (Html.BeginForm("SignIn", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group pb-2">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group pb-3">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group pb-3">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Login" class="btn btn-primary login-button" />
+                    </div>
+                </div>
+
+                <div>
+                    <p>Don't have an account? @Html.ActionLink("Sign Up", "SignUp")</p>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+</div>

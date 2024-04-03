@@ -1,0 +1,91 @@
+﻿@model BusBookingSystem.Models.Route
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 class="text-center">Edit</h2>
+<hr />
+<style>
+    .jumbotron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .login-box {
+        width: 40%;
+    }
+
+    .form-horizontal {
+        padding-left: 40px;
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="login-box shadow rounded p-5">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.RouteId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.BusId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.BusStopId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.TotalSeatsCapacity, new { htmlAttributes = new { @class = "form-control" } })
+
+
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.SourceBusStop, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SourceBusStop, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SourceBusStop, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.SourceBusStopId, "Source:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SourceBusStopId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SourceBusStopId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.DestinationBusStop, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DestinationBusStop, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DestinationBusStop, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pb-3">
+                @Html.LabelFor(model => model.DestinationBusStopId, "Destination:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DestinationBusStopId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DestinationBusStopId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pb-3">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+                    }
+
+                    <div class="text-center">
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </div>
+                </div>

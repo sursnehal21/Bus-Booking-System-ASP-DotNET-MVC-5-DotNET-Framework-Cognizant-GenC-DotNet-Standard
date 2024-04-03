@@ -1,0 +1,92 @@
+﻿@model BusBookingSystem.Models.Route
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2 class="text-center">Create</h2>
+<hr />
+<style>
+    .jumbotron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .login-box {
+        width: 40%;
+    }
+
+    .form-horizontal {
+        padding-left: 40px;
+    }
+</style>
+
+<div class="jumbotron">
+    <div class="login-box shadow rounded p-5">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group pb-3">
+                    @Html.LabelFor(model => model.BusId, "Bus Name", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("BusId", (IEnumerable<SelectListItem>)ViewBag.BusInfos, new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group pb-3">
+                    @Html.LabelFor(model => model.SourceBusStop, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("BusStopId", (IEnumerable<SelectListItem>)ViewBag.SourceBusStop, new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+                <div class="form-group pb-3">
+                    @Html.LabelFor(model => model.DestinationBusStop, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("BusStopId1", (IEnumerable<SelectListItem>)ViewBag.DestinationBusStop, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group" hidden>
+                    @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("DepartureTime", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group" hidden>
+                    @Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("ArrivalTime", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group" hidden>
+                    @Html.LabelFor(model => model.TotalSeatsCapacity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("TotalSeatsCapacity", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group pb-3">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="text-center">
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
