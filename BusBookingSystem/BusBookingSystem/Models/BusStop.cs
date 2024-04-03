@@ -7,7 +7,7 @@ using System.Web;
 namespace BusBookingSystem.Models
 {
     public class BusStop
-    {//airport
+    {
         [Key]
         public int BusStopId { get; set; }
 
