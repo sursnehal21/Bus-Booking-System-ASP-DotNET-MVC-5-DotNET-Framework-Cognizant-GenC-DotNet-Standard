@@ -10,7 +10,6 @@ namespace BusBookingSystem.Models
     [Table("BusInfo")]
     public class BusInfo
     {
-        //airline
         [Key]
         public int BusId { get; set; }
 
