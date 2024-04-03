@@ -7,7 +7,6 @@ using System.Web;
 
 namespace BusBookingSystem.Models
 {
-    [Table("User")]
     public class User
     {
         [Key]
